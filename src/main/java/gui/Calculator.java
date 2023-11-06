@@ -134,8 +134,8 @@ public class Calculator extends VBox implements EventHandler<ActionEvent>{
 
 		if (value.equals("C")) {
 			// Si se presiona el botón de reset, limpia las entradas
-			number1 = "";
-			number2 = "";
+			number1 ="";
+			number2 ="";
 			operator = null;}
 		if (value.matches("[0-9]") && operator != null){
 			number2 += value;
@@ -156,25 +156,33 @@ public class Calculator extends VBox implements EventHandler<ActionEvent>{
 			displayText.setText(number1+ number2);
 		}
 
-        if (value.equals("=")){
+        if (value.equals("=") && !(number1.isEmpty()) && !(number2.isEmpty()) && operator!= null){
 			int number1int = Integer.parseInt(number1);
 			int number2int = Integer.parseInt(number2);
 			if (operator.equals("+")){
 				int operacion1 = number1int+number2int;
 				displayText.setText(Integer.toString(operacion1));
 			}
-			if (operator.equals("-")){
+			else if (operator.equals("-")){
 				int operacion2 = number1int-number2int;
 				displayText.setText(Integer.toString(operacion2));
 			}
-			if (operator.equals("*")){
+			else if (operator.equals("*")){
 				int operacion3 = number1int*number2int;
 				displayText.setText(Integer.toString(operacion3));
 			}
-			if (operator.equals("/")){
-				int operacion4 = number1int/number2int;
-				displayText.setText(Integer.toString(operacion4));
+			else if (operator.equals("/")){
+
+				if (number2int == 0){
+					displayText.setText("No puedes dividir entre cero");
+				}
+				else {
+					int operacion4 = number1int/number2int;
+					displayText.setText(Integer.toString(operacion4));
+				}
+
 			}
+
 
 			number1 = "";
 			number2 = "";
