@@ -145,8 +145,13 @@ public class Calculator extends VBox implements EventHandler<ActionEvent>{
 				number1 += value;
 
 		}
-		else if (value.equals("+") || value.equals("-")|| value.equals("/")|| value.equals("*") ){
+		else if (value.equals("+") || value.equals("-")|| value.equals("/")|| value.equals("*")){
+			if (!(number1.isEmpty())){
 			operator = value;}
+			else {
+				displayText.setText("Debes iniciar con un numero");
+			}
+		}
 
 
 	// Actualiza el texto de la pantalla
