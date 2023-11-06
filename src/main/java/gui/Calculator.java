@@ -136,30 +136,50 @@ public class Calculator extends VBox implements EventHandler<ActionEvent>{
 			// Si se presiona el botón de reset, limpia las entradas
 			number1 = "";
 			number2 = "";
-			operator = "";
+			operator = null;}
+		if (value.matches("[0-9]") && operator != null){
+			number2 += value;
 
-		}if(value.matches("[0-9]") && !(number2.equals("0"))) { // Si se presiona un botón de número
+		}if(value.matches("[0-9]") && operator == null) { // Si se presiona un botón de número
 				// Si no se ha seleccionado un operador, agrega el valor al número1
 				number1 += value;
 
 		}
 		else if (value.equals("+") || value.equals("-")|| value.equals("/")|| value.equals("*") ){
 			operator = value;}
-		if (value.matches("[0-9]") && operator !=null)
-			number2 += value;
+
 
 	// Actualiza el texto de la pantalla
-		displayText.setText(number1 + operator + number2);
+		if (operator!= null){
+			displayText.setText(number1 + operator + number2);}
+		else {
+			displayText.setText(number1+ number2);
+		}
+
         if (value.equals("=")){
-            displayText.setText("holiwi");
-            System.out.println(number1);
-            System.out.println("+++++++++++++++++++++++");
-            System.out.println(operator);
-            System.out.println("+++++++++++++++++++++++");
-            System.out.println(number2);
-            number1 = "";
-            number2 = "";
-            operator = "";
+			int number1int = Integer.parseInt(number1);
+			int number2int = Integer.parseInt(number2);
+			if (operator.equals("+")){
+				int operacion1 = number1int+number2int;
+				displayText.setText(Integer.toString(operacion1));
+			}
+			if (operator.equals("-")){
+				int operacion2 = number1int-number2int;
+				displayText.setText(Integer.toString(operacion2));
+			}
+			if (operator.equals("*")){
+				int operacion3 = number1int*number2int;
+				displayText.setText(Integer.toString(operacion3));
+			}
+			if (operator.equals("/")){
+				int operacion4 = number1int/number2int;
+				displayText.setText(Integer.toString(operacion4));
+			}
+
+			number1 = "";
+			number2 = "";
+			operator = null;
+
         }
 	}
 
